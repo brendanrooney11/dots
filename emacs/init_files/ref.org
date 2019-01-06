@@ -1,0 +1,72 @@
+* Hotkeys
+ | 'C-z'      -> undo                   | edit |
+ | 'C-x C-b' -> ibuffer                 | nav  |
+ | 'C-c C-i' -> toggle iedit-mode       | edit |
+ | 'C-c C-n' -> linum-mode              | ui   |
+ | 'C-c C-r  -> restart-emacs           | nav  |
+ | 'C-c C-;' -> toggle-comment-on-line  | edit |
+ | 'C-c d'   -> duplicate-current-line  | edit |
+ | 'C-c g' -> avy-goto-line             | nav  |
+ | 'C-c j    -> avy-goto-word-1         | nav  |
+ | 'C-c r b  -> helm-filtered-bookmarks | nav  |
+ | 'C-/'     -> comment-or-uncomment    | edit |
+ | 'M-x      -> helm-M-x                | nav  |
+
+* Require
+ | 'company        | c_mode |
+ | 'projectile     | nav    |
+ | 'ido-ubiquitous | nav    |
+ | 'org            | org    |
+ | 'racer          | rust   |
+ | 'rust-mode      | rust   |
+ | 'flycheck-rust  | rust   |
+ | 'powerline      | ui     |
+ 
+* Functions
+| toggle-comment-on-line | edit |
+| duplicate-current-line | edit |
+| my-codeing-hook        | py   |
+|                        |      |
+                                                             
+* Variables
+| company-tooltip-align-annotations = t                   | c_mode    |
+| ido-mode = 1                                            | nav       |
+| ido-everywhere = 1                                      | nav       |
+| projectile-global-mode                                  | nav       |
+| show-paren-mode = 1                                     | edit      |
+| backup-directroy-alist =  ('.') . ('~/.emacs.d/backups) | edit      |
+| create-lockfiles = nil                                  | potpourri |
+| theme = {theme}                                         | ui        |
+| inhibit-startup-message = t                             | ui        |
+| set-face-attribute :height = 130                        | ui        |
+| ring-bell-function = 'ignore                            | ui        |
+| menu-bar-mode = -1                                      | ui        |
+| tool-bar-mode = -1                                      | ui        |
+| scroll-bar-mode = -1                                    | ui        |
+| narrow-to-region = 'disabled nil                        | ui        |
+| linum-format = %d                                       | ui        |
+
+* Hooks
+| 'prog-mode-hook     | 'company-mode        | c_mode |
+| 'rust-mode-hook     | 'company-mode        | rust   |
+| 'rust-mode-hook     | 'racer-mode          | rust   |
+| 'racer-mode-hook    | 'eldoc-mode          | rust   |
+| 'flycheck-mode-hook | 'flycheck-rust-setup | rust   |
+
+* FILES
+** c_d = c_devlopment_settings.el
+** c_mode = company_mode.el
+** devel =  devlopment_base.el
+** edit = editing.el
+** nav = navigation.el
+** org = org_mode.el
+** potpourri = potpourri.el
+** py = python_devlopment_settings.el
+** rust = rust_devlopment.el
+** ui = ui.el
+
+* Todos
+** TODO sync c_devlopment_settings
+*** Update ref file
+** TODO sync devlopment_base
+** TODO rename or delete my-coding-hook in py
