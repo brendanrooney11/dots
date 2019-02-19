@@ -21,7 +21,7 @@
 ;;     (use-package company-tern
 ;;       :config
 ;;       (add-to-list 'company-backends 'company-tern))))
-
+(add-hook 'rjsx-mode-hook #'company-mode)
 (defhydra js2-refactor-hydra (:color blue :hint nil)
   
   "

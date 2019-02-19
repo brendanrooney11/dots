@@ -112,15 +112,17 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("8a9be13b2353a51d61cffed5123b157000da0347c252a7a308ebc43e16662de7" "dd43ce1171324a8e47f9e4ca9f49773c4b4960706171ab951130c668adc59f53" "26d49386a2036df7ccbe802a06a759031e4455f07bda559dcf221f53e8850e69" "13d20048c12826c7ea636fbe513d6f24c0d43709a761052adbca052708798ce3" default)))
+    ("e2fd81495089dc09d14a88f29dfdff7645f213e2c03650ac2dd275de52a513de" "ab564a7ce7f2b2ad9e2cfe9fe1019b5481809dd7a0e36240c9139e230cc2bc32" "3da031b25828b115c6b50bb92a117f5c0bbd3d9d0e9ba5af3cd2cb9db80db1c2" "595617a3c537447aa7e76ce05c8d43146a995296ea083211225e7efc069c598f" "8a9be13b2353a51d61cffed5123b157000da0347c252a7a308ebc43e16662de7" "dd43ce1171324a8e47f9e4ca9f49773c4b4960706171ab951130c668adc59f53" "26d49386a2036df7ccbe802a06a759031e4455f07bda559dcf221f53e8850e69" "13d20048c12826c7ea636fbe513d6f24c0d43709a761052adbca052708798ce3" default)))
  '(package-selected-packages
    (quote
-    (json-mode htmlize ace-window pug-mode which-key use-package sublimity restart-emacs rainbow-delimiters racer projectile powerline neotree multiple-cursors monokai-theme moe-theme magit lsp-ui iedit ido-completing-read+ idle-highlight-mode helm-swoop helm-ag ghc expand-region evil elpy darkokai-theme crux company-lsp cargo beacon avy ag))))
+    (company-tabnine comapny-tabnine pdf-tools json-mode htmlize ace-window pug-mode which-key use-package sublimity restart-emacs rainbow-delimiters racer projectile powerline neotree multiple-cursors monokai-theme moe-theme magit lsp-ui iedit ido-completing-read+ idle-highlight-mode helm-swoop helm-ag ghc expand-region evil elpy darkokai-theme crux company-lsp cargo beacon avy ag))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Iosevka" :foundry "CYEL" :slant normal :weight normal :height 113 :width normal))))
- '(hl-line ((t (:background "RoyalBlue4")))))
+ '(hl-line ((t (:background "RoyalBlue4"))))
+ '(js2-object-property ((t (:foreground "aquamarine3"))))
+ '(js2-object-property-access ((t (:inherit js2-object-property :foreground "green")))))
 

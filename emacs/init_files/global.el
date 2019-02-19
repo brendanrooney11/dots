@@ -1,13 +1,13 @@
 (eval-when-compile
   (require 'use-package))
 
-(use-package evil)
+;;(use-package evil)
 (use-package ace-window)
 (use-package ag)
 (use-package avy
   :bind
   (( "C-j" . avy-goto-word-or-subword-1)
-  ("C-c g" . avy-goto-line)))
+   ("C-c g" . avy-goto-line)))
 (use-package beacon  
   :diminish beacon-mode
   :config
@@ -41,21 +41,25 @@
   (helm-mode)
   :bind
   (("M-y" . helm-show-kill-ring)
-  ("M-x" . helm-M-x)
-  ("M-s s" . helm-occur)
-  ("C-c h b" . helm-filtered-bookmarks)
-  ( "C-x C-f" . helm-find-files)
-  ("C-x b" . helm-mini)))
+   ("M-x" . helm-M-x)
+   ("M-s s" . helm-occur)
+   ("C-c C-h b" . helm-filtered-bookmarks)
+   ("C-x C-f" . helm-find-files)
+   ("C-x b" . helm-mini)))
 (use-package helm-ag
-    :bind
-    (("M-s a" .  helm-ag)))
+  :bind
+  (("M-s a" .  helm-ag)))
 (use-package helm-swoop)
 (use-package hydra)
 (use-package iedit
   :bind
   (("C-c C-i" . iedit-quit)))
 (use-package idle-highlight-mode)
-(use-package ivy)
+(use-package ivy
+  :config
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-count-format "(%d%d)"))
 (use-package js2-mode)
 (use-package js2-refactor)
 (use-package lsp-mode)
@@ -66,18 +70,22 @@
 (use-package multiple-cursors
   :bind
   (("C-c m a" . mc/vertical-align)
-  ("C-c m s" . mc/mark-next-like-this)
-  ("C-c m d" . mc/mark-all-like-this)
-  ("C-c m f" . mc/vertical-align)))
+   ("C-c m s" . mc/mark-next-like-this)
+   ("C-c m d" . mc/mark-all-like-this)
+   ("C-c m f" . mc/vertical-align)))
 (use-package neotree
   :bind
   ([f8] . neotree-toggle))
-(use-package pug-mode)
-(use-package powerline)
 
-(use-package projectile
+(use-package powerline)
+(use-package pdf-tools
+  :ensure)
+(use-package keybindings
+  :bind
+  ("C-c C-p C-f" . projectile-find-file)
   :config
   (projectile-global-mode))
+(use-package pug-mode)
 (use-package rainbow-delimiters)
 (use-package racer)
 (use-package rjsx-mode)
@@ -87,7 +95,7 @@
 (use-package rust-mode)
 (use-package sublimity
   :bind
-   ([f9] . sublimity-mode))
+  ([f9] . sublimity-mode))
 (use-package smartparens)
 (use-package smart-mode-line
   :config
@@ -107,6 +115,7 @@
   :config
   (yas/global-mode 1)
   (load (concat init-dir "snippets/go-snippets/go-snippets.el"))
+  (load (concat init-dir "snippets/react-snippets/react-snippets.el"))
   (add-to-list 'yas-snippet-dirs (concat init-dir "snippets")))
 (use-package keyfreq
   :config
@@ -156,7 +165,7 @@
 (global-set-key (kbd "C-s") 'isearch-forward)
 (global-set-key (kbd "C-c C-b") 'ibuffer)
 
-; Text Movement or Creation
+                                        ; Text Movement or Creation
 (global-set-key (kbd "M-/") 'comment-or-uncomment-region)
 (global-set-key (kbd "C-c d") 'duplicate-current-line)
 (global-set-key (kbd "M-j") 'join-line)
@@ -246,23 +255,23 @@
   (interactive)
   (indent-region (point-min) (point-max)))
 
-;############################################
+                                        ;############################################
 (defun duplicate-current-line (&optional n)
   "duplicate current line, make more than 1 copy given a numeric argument"
   (interactive "p")
   (save-excursion
     (let ((nb (or n 1))
     	  (current-line (thing-at-point 'line)))
-          ;; when on last line, insert a newline first
+      ;; when on last line, insert a newline first
       (when (or (= 1 (forward-line 1)) (eq (point) (point-max)))
     	(insert "\n"))
-    
-          ;; now insert as many time as requested
+      
+      ;; now insert as many time as requested
       (while (> n 0)
     	(insert current-line)
     	(decf n)))))
 
-;######################################################
+                                        ;######################################################
 
 (defun toggle-mark-word-at-point ()
   (interactive)
@@ -272,7 +281,7 @@
 (global-set-key (kbd "C-.") 'toggle-mark-word-at-point)
 
 (fset 'kill_line_no_kill_ring
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([1 1 67108896 5 backspace] 0 "%d")) arg)))
+      (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([1 1 67108896 5 backspace] 0 "%d")) arg)))
 
 
 
