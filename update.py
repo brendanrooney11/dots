@@ -2,7 +2,7 @@ import subprocess
 import sys
 
 def main():
-    print(sys.argv)
+    print(sys.argv)    
     if "emacs" in sys.argv:
         subprocess.run(["cp", '/home/bjr/.emacs.d/init.el', "emacs/"])
         subprocess.run(["cp", "-r", "/home/bjr/.emacs.d/init_files/", "emacs/"])
