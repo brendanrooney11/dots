@@ -114,9 +114,10 @@
   :bind ("C-c /" . yas-expand)
   :config
   (yas/global-mode 1)
-  (load (concat init-dir "snippets/go-snippets/go-snippets.el"))
-  (load (concat init-dir "snippets/react-snippets/react-snippets.el"))
-  (add-to-list 'yas-snippet-dirs (concat init-dir "snippets")))
+  ;;(load (concat init-dir "snippets/go-snippets/go-snippets.el"))
+  ;;(load (concat init-dir "snippets/react-snippets/react-snippets.el"))
+  ;;(add-to-list 'yas-snippet-dirs (concat init-dir "snippets"))
+  )
 (use-package keyfreq
   :config
   (keyfreq-mode 1)
@@ -141,7 +142,7 @@
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq tab-width 2)
-
+(setq make-backup-files nil)
 (setq-default indent-tabs-mode nil)
 (setq switch-to-buffer-preserve-window-point t)
 (setq projectile-switch-project-action 'neotree-projectile-action)
@@ -150,6 +151,9 @@
 (setq linum-format "%d ")
 (setq create-lockfiles nil)
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
+(setq initial-scratch-message ";;scratch\n\n")
+(set-face-attribute 'linum nil :height 10) ; static height
+(global-linum-mode)
 
 ;; CUSTOM FACES
 (custom-set-faces
@@ -164,8 +168,10 @@
 ;; Search
 (global-set-key (kbd "C-s") 'isearch-forward)
 (global-set-key (kbd "C-c C-b") 'ibuffer)
+(global-set-key (kbd "C-c C-w") 'delete-trailing-whitespace)
+(global-set-key (kbd "C-M-g") 'dumb-jump-go)
 
-                                        ; Text Movement or Creation
+; Text Movement or Creation
 (global-set-key (kbd "M-/") 'comment-or-uncomment-region)
 (global-set-key (kbd "C-c d") 'duplicate-current-line)
 (global-set-key (kbd "M-j") 'join-line)
@@ -177,11 +183,13 @@
 (global-set-key (kbd "C-c a") 'beginning-of-defun)
 (global-set-key (kbd "C-c e") 'end-of-defun)
 (global-set-key (kbd "C-c h") 'mark-defun)
+(global-set-key (kbd "C-c C-u") 'move-line-up)
+(global-set-key (kbd "C-c C-d") 'move-line-down)
+(global-set-key (kbd "C-c C-w") 'delete-trailing-whitespace)
+(global-set-key (kbd "C-M-g") 'dumb-jump-go)
 
 ;; Effect non-interactive changes 
 (global-set-key (kbd "C-c C-n") 'linum-mode)
-
-
 (global-set-key (kbd "C-c j") 'toggle-mark-word-at-point)
 ;; Start Interactive Systems or Routines
 (global-set-key [f2] 'scroll-bar-mod)
@@ -288,3 +296,10 @@
 (setq tab-width 2)
 
 
+
+
+(setq ispell-program-name "hunspell")
+;; below two lines reset the the hunspell to it STOPS querying locale!
+(setq ispell-local-dictionary "en_US") ; "en_US" is key to lookup in `ispell-local-dictionary-alist`
+(setq ispell-local-dictionary-alist
+      '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)))
