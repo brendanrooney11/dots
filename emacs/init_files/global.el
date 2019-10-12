@@ -198,7 +198,6 @@
 
 ;; Hydras
 (global-set-key (kbd "C-c o") 'org-hydra/body)
-(global-set-key (kbd "C-c f") 'vimish-fold-hydra/body)
 (global-set-key (kbd "C-c z") 'zoom-hydra/body)
 (global-set-key (kbd "C-c i") 'iedit-hydra/body)
 ;;(global-set-key (kbd "C-c e") 'eval-hydra/body)
