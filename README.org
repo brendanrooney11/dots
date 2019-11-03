@@ -1,0 +1,6 @@
+* i3
+  Cp i3 folder into ~/.config
+  Need to install
+  + dmenu
+  + i3status
+  + i3blocks
