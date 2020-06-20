@@ -1,42 +1,60 @@
 (eval-when-compile
   (require 'use-package))
-
 ;;(use-package evil)
-(use-package ace-window)
-(use-package ag)
+(use-package ace-window
+  :ensure)
+(use-package ag
+  :ensure)
 (use-package avy
+  :ensure
   :bind
   (( "C-j" . avy-goto-word-or-subword-1)
    ("C-c g" . avy-goto-line)))
-(use-package beacon  
+(use-package beacon
+  :ensure
   :diminish beacon-mode
   :config
   (beacon-mode 1))
-(use-package cargo)
 (use-package command-log-mode
+  :ensure
   :diminish command-log-mode)
-(use-package counsel)
+(use-package counsel
+  :ensure)
 (use-package crux
+  :ensure
   :config
   (global-set-key [remap move-beginning-of-line] #'crux-move-beginning-of-line))
-(use-package darkokai-theme)
-(use-package elpy)
+(use-package darkokai-theme
+  :ensure)
+(use-package dumb-jump
+  :ensure)
 (use-package expand-region
+  :ensure
   :bind
   (("C-w" . er/expand-region)))
-(use-package exec-path-from-shell)
-(use-package flycheck)
-(use-package ghc)
-(use-package gruvbox-theme
+(use-package exec-path-from-shell
+  :ensure)
+(use-package fill-column-indicator
+  :ensure
   :config
-  (load-theme 'gruvbox t))
-(use-package go-add-tags)
-(use-package go-eldoc)
-(use-package go-mode)
-(use-package go-gopath)
-(use-package go-stacktracer)
-(use-package haskell-mode)
+  (setq fci-rule-column 120)
+  (setq fci-rule-width 1)
+  (setq fci-rule-color "darkblue"))
+(use-package flycheck
+  :ensure
+  :init
+  (add-to-list 'display-buffer-alist
+               `(,(rx bos "*Flycheck errors*" eos)
+                 (display-buffer-reuse-window
+                  display-buffer-in-side-window)
+                 (side            . bottom)
+                 (reusable-frames . visible)
+                 (window-height   . 0.15))))
+
+(use-package gruvbox-theme
+  :ensure)
 (use-package helm
+  :ensure
   :commands
   (helm-mode)
   :bind
@@ -45,71 +63,140 @@
    ("M-s s" . helm-occur)
    ("C-c C-h b" . helm-filtered-bookmarks)
    ("C-x C-f" . helm-find-files)
-   ("C-x b" . helm-mini)))
+   ;;("C-x b" . helm-mini)
+   ))
 (use-package helm-ag
+  :ensure
   :bind
   (("M-s a" .  helm-ag)))
-(use-package helm-swoop)
-(use-package hydra)
+(use-package helm-swoop
+  :ensure)
+(use-package hydra
+  :ensure)
+(use-package ibuffer
+  :config
+  (setq ibuffer-expert t)
+  (setq ibuffer-display-summary nil)
+  (setq ibuffer-use-other-window nil)
+  (setq ibuffer-show-empty-filter-groups nil)
+  (setq ibuffer-movement-cycle nil)
+  (setq ibuffer-default-sorting-mode 'filename/process)
+  (setq ibuffer-use-header-line t)
+  (setq ibuffer-default-shrink-to-minimum-size nil)
+  (setq ibuffer-formats
+        '((mark modified read-only locked " "
+                (name 30 30 :left :elide)
+                " "
+                (size 9 -1 :right)
+                " "
+                (mode 16 16 :left :elide)
+                " " filename-and-process)
+          (mark " "
+                (name 16 -1)
+                " " filename)))
+  (setq ibuffer-saved-filter-groups nil)
+  :hook
+  (ibuffer-mode . hl-line-mode)
+  :bind (("C-x b" . ibuffer)
+         :map ibuffer-mode-map
+         ("* f" . ibuffer-mark-by-file-name-regexp)
+         ("* g" . ibuffer-mark-by-content-regexp) ; "g" is for "grep"
+         ("* n" . ibuffer-mark-by-name-regexp)
+         ("s n" . ibuffer-do-sort-by-alphabetic)  ; "sort name" mnemonic
+         ("/ g" . ibuffer-filter-by-content)))
+(use-package ibuffer-vc
+  :ensure
+  :after (ibuffer vc)
+  :bind (:map ibuffer-mode-map
+              ("/ V" . ibuffer-vc-set-filter-groups-by-vc-root)
+              ("/ <deletechar>" . ibuffer-clear-filter-groups)))
+(use-package isearch
+  :config
+  (setq search-whitespace-regexp ".*")
+  (setq isearch-lax-whitespace t)
+  (setq isearch-regexp-lax-whitespace nil))
 (use-package iedit
+  :ensure
   :bind
   (("C-c C-i" . iedit-quit)))
-(use-package idle-highlight-mode)
-(use-package ivy
+(use-package idle-highlight-mode
+  :ensure
   :config
-  (ivy-mode 1)
+  (idle-highlight-mode))
+(use-package ivy
+  :ensure
+  :bind
+  (("C-c M-s" . counsel-ag))
+  :config
+  (ivy-mode 1)  
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "(%d%d)"))
-(use-package js2-mode)
-(use-package js2-refactor)
-(use-package lsp-mode)
-(use-package lsp-ui)
-(use-package magit)
-(use-package moe-theme)
-(use-package monokai-theme)
+
+(use-package lsp-mode
+  :ensure)
+(use-package lsp-ui
+  :ensure)
+(use-package magit
+  :ensure)
+(use-package moe-theme
+  :ensure)
+(use-package monokai-theme
+  :ensure)
 (use-package multiple-cursors
+  :ensure
   :bind
   (("C-c m a" . mc/vertical-align)
    ("C-c m s" . mc/mark-next-like-this)
    ("C-c m d" . mc/mark-all-like-this)
    ("C-c m f" . mc/vertical-align)))
 (use-package neotree
+  :ensure
   :bind
   ([f8] . neotree-toggle))
 
-(use-package powerline)
+(use-package nord-theme
+  :ensure)
+
+(use-package powerline
+  :ensure)
 (use-package pdf-tools
   :ensure)
-(use-package keybindings
+(use-package projectile
+  :ensure
   :bind
   ("C-c C-p C-f" . projectile-find-file)
   :config
   (projectile-global-mode))
-(use-package pug-mode)
-(use-package rainbow-delimiters)
-(use-package racer)
-(use-package rjsx-mode)
+(use-package rainbow-delimiters
+  :ensure)
 (use-package restart-emacs
+  :ensure
   :bind
   ("C-c C-r" . restart-emacs))
-(use-package rust-mode)
 (use-package sublimity
+  :ensure
   :bind
   ([f9] . sublimity-mode))
-(use-package smartparens)
+(use-package smartparens
+  :ensure)
 (use-package smart-mode-line
-  :config
+  :ensure
+  :config  
   (setq sml/theme 'dark))
 (use-package swiper
+  :ensure
   :bind
   ("C-c s" . swiper))
-(use-package vimish-fold)
+(use-package vimish-fold
+  :ensure)
 (use-package which-key
+  :ensure
   :commands
   (which-key-mode)
   :config
   (setq which-key-idle-delay 2.0))
 (use-package yasnippet
+  :ensure
   :diminish yas
   :bind ("C-c /" . yas-expand)
   :config
@@ -118,12 +205,13 @@
   ;;(load (concat init-dir "snippets/react-snippets/react-snippets.el"))
   ;;(add-to-list 'yas-snippet-dirs (concat init-dir "snippets"))
   )
+(use-package yasnippet-snippets
+  :ensure)
 (use-package keyfreq
+  :ensure
   :config
   (keyfreq-mode 1)
   (keyfreq-autosave-mode 1))
-(use-package htmlize
-  :ensure)
 
 
 ;; THINGS TURNED ON
@@ -136,6 +224,7 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+(column-number-mode 1)
 (put 'narrow-to-region 'disabled nil)
 ;; THINGS MODIFIED FROM DEFAULT
 (windmove-default-keybindings)
@@ -146,30 +235,22 @@
 (setq-default indent-tabs-mode nil)
 (setq switch-to-buffer-preserve-window-point t)
 (setq projectile-switch-project-action 'neotree-projectile-action)
-(setq inhibit-startup-message t)        
+(setq inhibit-startup-message t)
 (setq ring-bell-function 'ignore)
 (setq linum-format "%d ")
 (setq create-lockfiles nil)
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 (setq initial-scratch-message ";;scratch\n\n")
-(set-face-attribute 'linum nil :height 10) ; static height
-(global-linum-mode)
+
 
 ;; CUSTOM FACES
 (custom-set-faces
- '(default ((t (:family "Iosevka" :foundry "CYEL" :slant normal :weight normal :height 113 :width normal))))
- )
+ '(default ((t (:family "Iosevka" :foundry "CYEL" :slant normal :weight normal :height 113 :width normal)))))
 
 
-;; HOTKEYS
-;; Grouped by Functionallity
-;; Sub grouped Alphabetically
-(global-set-key (kbd "C-z") 'undo)
 ;; Search
 (global-set-key (kbd "C-s") 'isearch-forward)
-(global-set-key (kbd "C-c C-b") 'ibuffer)
-(global-set-key (kbd "C-c C-w") 'delete-trailing-whitespace)
-(global-set-key (kbd "C-M-g") 'dumb-jump-go)
+
 
 ; Text Movement or Creation
 (global-set-key (kbd "M-/") 'comment-or-uncomment-region)
@@ -177,7 +258,7 @@
 (global-set-key (kbd "M-j") 'join-line)
 (global-set-key (kbd "M-[") 'insert-pair)
 (global-set-key (kbd "M-{") 'insert-pair)
-(global-set-key (kbd "M-\"") 'insert-pair) ;; The key here is M-". 
+(global-set-key (kbd "M-\"") 'insert-pair) ;; The key here is M-".
 (global-set-key (kbd "C-c C-c <tab>") 'indent-buffer)
 (global-set-key (kbd "C-q") 'kill-region)
 (global-set-key (kbd "C-c a") 'beginning-of-defun)
@@ -185,15 +266,19 @@
 (global-set-key (kbd "C-c h") 'mark-defun)
 (global-set-key (kbd "C-c C-u") 'move-line-up)
 (global-set-key (kbd "C-c C-d") 'move-line-down)
-(global-set-key (kbd "C-c C-w") 'delete-trailing-whitespace)
 (global-set-key (kbd "C-M-g") 'dumb-jump-go)
 
-;; Effect non-interactive changes 
+
+;; Non-interactive changes
 (global-set-key (kbd "C-c C-n") 'linum-mode)
 (global-set-key (kbd "C-c j") 'toggle-mark-word-at-point)
 ;; Start Interactive Systems or Routines
 (global-set-key [f2] 'scroll-bar-mod)
 (global-set-key [f12] 'calendar)
+
+
+;;other
+(global-set-key (kbd "C-z") 'undo)
 
 
 ;; Hydras
@@ -235,7 +320,6 @@
   ("1" (text-scale-set 0) nil :bind nil :exit t))
 
 
-
 (defhydra iedit-hydra ()
   "iedit"
   ("h" (iedit-mode (digit-argument 1)) "one")
@@ -252,9 +336,7 @@
   ("a" (eval-last-sexp) "sexp")
   ("s" (eval-region) "region")
   ("d" (eval-defun) "defun")
-  ("f" (eval-buffer) "buffer"))  
-
-
+  ("f" (eval-buffer) "buffer"))
 
 
 ;;############################################
@@ -262,7 +344,7 @@
   (interactive)
   (indent-region (point-min) (point-max)))
 
-                                        ;############################################
+;;############################################
 (defun duplicate-current-line (&optional n)
   "duplicate current line, make more than 1 copy given a numeric argument"
   (interactive "p")
@@ -272,33 +354,16 @@
       ;; when on last line, insert a newline first
       (when (or (= 1 (forward-line 1)) (eq (point) (point-max)))
     	(insert "\n"))
-      
+
       ;; now insert as many time as requested
       (while (> n 0)
     	(insert current-line)
     	(decf n)))))
 
-                                        ;######################################################
-
+;;######################################################
 (defun toggle-mark-word-at-point ()
   (interactive)
   (if hi-lock-interactive-patterns
       (unhighlight-regexp (car (car hi-lock-interactive-patterns)))
     (highlight-symbol-at-point)))
 (global-set-key (kbd "C-.") 'toggle-mark-word-at-point)
-
-(fset 'kill_line_no_kill_ring
-      (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([1 1 67108896 5 backspace] 0 "%d")) arg)))
-
-
-
-(setq tab-width 2)
-
-
-
-
-(setq ispell-program-name "hunspell")
-;; below two lines reset the the hunspell to it STOPS querying locale!
-(setq ispell-local-dictionary "en_US") ; "en_US" is key to lookup in `ispell-local-dictionary-alist`
-(setq ispell-local-dictionary-alist
-      '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)))

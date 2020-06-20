@@ -27,7 +27,7 @@
 	 (file "~/documents/agenda/inbox.org")
 	 "* TODO %^{TODO} :%?:\n SCHEDULED:%^T")
         ("n" "Note" entry
-         (file "~/documents/notes/notes.org")
+         (file "~/documents/notes/notes/notes.org")
          "* %^{NOTE} :%?:\n %i")
 	))
 

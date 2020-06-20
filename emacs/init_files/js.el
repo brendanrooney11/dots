@@ -1,5 +1,7 @@
-
-
+(use-package js2-mode
+  :ensure)
+(use-package js2-refactor
+  :ensure)
 (use-package json-mode
   :ensure
   :mode ((".json" . json-mode))

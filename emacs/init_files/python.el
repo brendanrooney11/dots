@@ -1,4 +1,7 @@
-(elpy-enable)
+(use-package elpy
+  :ensure  
+  :init
+  (elpy-enable))
 
 		       
 

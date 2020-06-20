@@ -1,4 +1,4 @@
-
+export LC_ALL=C; unset LANGUAGE
 ########## CONFIGURATION ##########
 
 HISTFILE=~/.histfile
@@ -69,6 +69,7 @@ alias notes="cd ~/documents/notes"
 alias ls='ls --tabsize=0 --literal --show-control-chars --color=always --human-readable'
 alias grep='grep --color=auto'
 alias fb='feh --bg-scale'
+alias f='ffplay'
 ########## PROMPT ##########
 # Time %B%t%b 
 PROMPT='%n@%m:%3/-> '
@@ -97,7 +98,6 @@ function google; {
 }
 
 export PYTHONIOENCODING=utf8
-PATH="/home/bjr/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/bjr/programs/node/node-v8.11.1-linux-x64/bin:/usr/local/go/bin:/home/bjr/go/bin:/home/bjr/programs/leiningen:/home/bjr/.local/bin"
-
-. /home/bjr/programs/z/z.sh
+export LANG=en_US.UTF-9 #The output of cabal was giving an error
+PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/bjr/programs/node/node-v12.13.1-linux-x64/bin:/usr/local/go/bin:/home/bjr/go/bin:/home/bjr/programs/leiningen:/home/bjr/.local/bin"
 

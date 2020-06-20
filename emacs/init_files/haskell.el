@@ -1,7 +1,15 @@
+(use-package ghc
+  :ensure)
+(use-package haskell-mode
+  :ensure)
 (add-hook 'haskell-mode-hook (lambda ()
 			       (add-to-list 'company-backends 'company-ghc)
 			       (ghc-init)))
 
+(use-package tidal
+  :ensure
+  :config
+  (setq tidal-interpreter "/usr/bin/ghci"))
 
 (defun my/haskell-hook()
   (setq company-ghc-show-info t)
@@ -13,10 +21,10 @@
 
 (add-hook 'haskell-mode-hook 'my/haskell-hook)
 
-(let ((my-cabal-path
-       (expand-file-name "~/Documents/programming/projects/poggio/.cabal-sandbox/bin")))
-  (setenv "PATH" (concat my-cabal-path path-separator (getenv "PATH")))
-  (add-to-list 'exec-path my-cabal-path))
+;; (let ((my-cabal-path
+;;        (expand-file-name "~/Documents/programming/projects/poggio/.cabal-sandbox/bin")))
+;;   (setenv "PATH" (concat my-cabal-path path-separator (getenv "PATH")))
+;;   (add-to-list 'exec-path my-cabal-path))
 
 
 (custom-set-variables

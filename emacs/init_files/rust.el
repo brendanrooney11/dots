@@ -1,4 +1,6 @@
-
+(use-package racer)
+(use-package cargo)
+(use-package rust-mode)
 (defun my/rust-hook()
   (setq company-tooltip-align-annotations t)
   (electric-pair-mode 1)

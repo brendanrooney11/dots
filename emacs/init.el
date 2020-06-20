@@ -8,97 +8,31 @@
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("melpa" . "http://melpa.org/packages/")))
 
-;; LIST OF PACKAGES REQUIRED
-(defvar local-packages '(ace-window
-                         ag
-			 avy ;; Jump to things
-			 beacon                         
-			 cargo
-                         cider
-                         command-log-mode
-			 company
-                         company-go
-			 company-lsp
-                         company-tern
-                         counsel
-			 crux ;; Collection of usefull extensions
-			 darkokai-theme
-			 elpy
-			 expand-region
-                         exec-path-from-shell
-			 flycheck
-			 ghc
-                         gruvbox-theme
-                         go-add-tags
-                         go-eldoc
-                         go-mode
-                         go-gopath
-                         go-stacktracer
-			 haskell-mode
-			 helm
-			 helm-ag
-			 helm-swoop
-                         hydra
-			 iedit ;; Multi-cursor support
-			 idle-highlight-mode
-                         ivy
-                         js2-mode
-                         js2-refactor
-                         keyfreq
-			 lsp-mode
-			 lsp-ui
-			 magit
-			 moe-theme
-			 monokai-theme
-			 multiple-cursors
-			 neotree			 
-			 pug-mode
-			 powerline
-			 projectile
-			 rainbow-delimiters
-			 racer
-                         rjsx-mode
-			 restart-emacs
-			 rust-mode                         
-			 sublimity
-                         smartparens
-                         smart-mode-line
-                         swiper
-			 use-package
-                         vimish-fold
-			 which-key
-                         yasnippet))
-
-;;UNINSTALLED-PACKAGES CREATES A LIST OF PACKAGES THAT NEED TO BE INSTALLED
-(defun uninstalled-packages (packages)
-  (delq nil
-	(mapcar (lambda (p) (if (package-installed-p p nil) nil p)) packages)))
-
-;; INSTALLS ALL PACKAGES IN LOCAL-PACKAGES THAT ARE NOT ALREADY INSTALLED
-(let ((need-to-install (uninstalled-packages local-packages)))
-  (when need-to-install
-    (progn
-      (package-refresh-contents)
-      (dolist (p need-to-install)
-        (package-install p)))))
-
-(when (not package-archive-contents)
-  (package-refresh-contents))
-
-;; OTHER INIT FILES
+(defvar local-packages '(use-package))
 
 ;; FILES ARE ALL LOCATED IN ~/.emacs.d/init_files/
-(load "~/.emacs.d/init_files/emacs-lisp.el")
 (load "~/.emacs.d/init_files/global.el")
-(load "~/.emacs.d/init_files/go.el")
 (load "~/.emacs.d/init_files/company.el")
-;;(load "~/.emacs.d/init_files/haskell_development.el")
-(load "~/.emacs.d/init_files/js.el")
-(load "~/.emacs.d/init_files/lisp.el")
+(load "~/.emacs.d/init_files/elfeed.el")
 (load "~/.emacs.d/init_files/notes.el")
 (load "~/.emacs.d/init_files/org.el")
+(load "~/.emacs.d/init_files/whitespace.el")
+
+;; Langs
+(load "~/.emacs.d/init_files/c.el")
+(load "~/.emacs.d/init_files/clojure.el")
+(load "~/.emacs.d/init_files/emacs-lisp.el")
+(load "~/.emacs.d/init_files/go.el")
+(load "~/.emacs.d/init_files/haskell.el")
+(load "~/.emacs.d/init_files/js.el")
+(load "~/.emacs.d/init_files/java.el")
+(load "~/.emacs.d/init_files/lisp.el")
+(load "~/.emacs.d/init_files/lsp.el")
+
 (load "~/.emacs.d/init_files/python.el")
-(load "~/.emacs.d/init_files/web.el")
+
+(load-theme 'gruvbox-dark-hard t)
+
 
 ;;(load "~/.emacs.d/init_files/rust_devlopment.el")
 
@@ -112,17 +46,22 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("2a9039b093df61e4517302f40ebaf2d3e95215cb2f9684c8c1a446659ee226b9" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "fd3c7bd752f48dcb7efa5f852ef858c425b1c397b73851ff8816c0580eab92f1" "e2fd81495089dc09d14a88f29dfdff7645f213e2c03650ac2dd275de52a513de" "ab564a7ce7f2b2ad9e2cfe9fe1019b5481809dd7a0e36240c9139e230cc2bc32" "3da031b25828b115c6b50bb92a117f5c0bbd3d9d0e9ba5af3cd2cb9db80db1c2" "595617a3c537447aa7e76ce05c8d43146a995296ea083211225e7efc069c598f" "8a9be13b2353a51d61cffed5123b157000da0347c252a7a308ebc43e16662de7" "dd43ce1171324a8e47f9e4ca9f49773c4b4960706171ab951130c668adc59f53" "26d49386a2036df7ccbe802a06a759031e4455f07bda559dcf221f53e8850e69" "13d20048c12826c7ea636fbe513d6f24c0d43709a761052adbca052708798ce3" default)))
+    ("aded61687237d1dff6325edb492bde536f40b048eab7246c61d5c6643c696b7f" "ae65ccecdcc9eb29ec29172e1bfb6cadbe68108e1c0334f3ae52414097c501d2" "2a9039b093df61e4517302f40ebaf2d3e95215cb2f9684c8c1a446659ee226b9" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "fd3c7bd752f48dcb7efa5f852ef858c425b1c397b73851ff8816c0580eab92f1" "e2fd81495089dc09d14a88f29dfdff7645f213e2c03650ac2dd275de52a513de" "ab564a7ce7f2b2ad9e2cfe9fe1019b5481809dd7a0e36240c9139e230cc2bc32" "3da031b25828b115c6b50bb92a117f5c0bbd3d9d0e9ba5af3cd2cb9db80db1c2" "595617a3c537447aa7e76ce05c8d43146a995296ea083211225e7efc069c598f" "8a9be13b2353a51d61cffed5123b157000da0347c252a7a308ebc43e16662de7" "dd43ce1171324a8e47f9e4ca9f49773c4b4960706171ab951130c668adc59f53" "26d49386a2036df7ccbe802a06a759031e4455f07bda559dcf221f53e8850e69" "13d20048c12826c7ea636fbe513d6f24c0d43709a761052adbca052708798ce3" default)))
+ '(haskell-process-auto-import-loaded-modules t)
+ '(haskell-process-log t)
+ '(haskell-process-suggest-remove-import-lines t)
  '(package-selected-packages
    (quote
-    (company-tabnine comapny-tabnine pdf-tools json-mode htmlize ace-window pug-mode which-key use-package sublimity restart-emacs rainbow-delimiters racer projectile powerline neotree multiple-cursors monokai-theme moe-theme magit lsp-ui iedit ido-completing-read+ idle-highlight-mode helm-swoop helm-ag ghc expand-region evil elpy darkokai-theme crux company-lsp cargo beacon avy ag))))
+    (slime-company nord-theme ibuffer-vc elfeed-org elpy company-lsp lsp-java rjsx-mode json-mode js2-refactor js2-mode tidal ghc go-stacktracer go-gopath go-eldoc go-add-tags company-go go-mode cider company-quickhelp company keyfreq yasnippet which-key vimish-fold smart-mode-line smartparens sublimity restart-emacs rainbow-delimiters projectile pdf-tools powerline neotree multiple-cursors monokai-theme moe-theme magit lsp-ui lsp-mode idle-highlight-mode iedit hydra helm-swoop helm-ag helm gruvbox-theme flycheck fill-column-indicator exec-path-from-shell expand-region dumb-jump darkokai-theme crux counsel command-log-mode beacon ag ace-window use-package)))
+ '(whitespace-style
+   (quote
+    (face tabs spaces trailing space-before-tab newline indentation space-after-tab space-mark tab-mark))))
+ 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Iosevka" :foundry "CYEL" :slant normal :weight normal :height 113 :width normal))))
- '(hl-line ((t (:background "RoyalBlue4"))))
  '(js2-object-property ((t (:foreground "aquamarine3"))))
  '(js2-object-property-access ((t (:inherit js2-object-property :foreground "green")))))
-
