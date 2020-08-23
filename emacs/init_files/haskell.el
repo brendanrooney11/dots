@@ -1,14 +1,17 @@
 (use-package ghc
+  :hook haskell-mode
   :ensure)
 (use-package haskell-mode
   :ensure)
+
 (add-hook 'haskell-mode-hook (lambda ()
 			       (add-to-list 'company-backends 'company-ghc)
 			       (ghc-init)))
 
 (use-package tidal
   :ensure
-  :config
+  :hook haskell-mode
+  :config  
   (setq tidal-interpreter "/usr/bin/ghci"))
 
 (defun my/haskell-hook()

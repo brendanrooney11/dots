@@ -1,4 +1,4 @@
-(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.hpp\\'" . c++-mode))
 
 (use-package company-c-headers
   :ensure

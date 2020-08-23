@@ -1,6 +1,8 @@
 (defvar notes-dir "/home/bjr/documents/notes/notes")
 (defvar dump-file "/home/bjr/documents/notes/notes/dump.org")
 
+;; kcd (concat notes-dir "/daily/"))
+;; (pop-to-buffer (concat notes-dir "/daily/" (format-time-string "%Y_%m_%d") ".org"))
 ;; Where to put notes when capturing them
 (defun note-dump ()
   (interactive)

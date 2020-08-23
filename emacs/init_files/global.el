@@ -24,8 +24,7 @@
   :ensure
   :config
   (global-set-key [remap move-beginning-of-line] #'crux-move-beginning-of-line))
-(use-package darkokai-theme
-  :ensure)
+
 (use-package dumb-jump
   :ensure)
 (use-package expand-region
@@ -51,8 +50,6 @@
                  (reusable-frames . visible)
                  (window-height   . 0.15))))
 
-(use-package gruvbox-theme
-  :ensure)
 (use-package helm
   :ensure
   :commands
@@ -116,15 +113,15 @@
   (setq isearch-lax-whitespace t)
   (setq isearch-regexp-lax-whitespace nil))
 (use-package iedit
-  :ensure
+  :ensure t
   :bind
   (("C-c C-i" . iedit-quit)))
 (use-package idle-highlight-mode
-  :ensure
+  :ensure t
   :config
   (idle-highlight-mode))
 (use-package ivy
-  :ensure
+  :ensure t
   :bind
   (("C-c M-s" . counsel-ag))
   :config
@@ -132,18 +129,12 @@
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "(%d%d)"))
 
-(use-package lsp-mode
-  :ensure)
-(use-package lsp-ui
-  :ensure)
 (use-package magit
   :ensure)
-(use-package moe-theme
-  :ensure)
-(use-package monokai-theme
-  :ensure)
+
 (use-package multiple-cursors
-  :ensure
+  :ensure t
+  :defer t
   :bind
   (("C-c m a" . mc/vertical-align)
    ("C-c m s" . mc/mark-next-like-this)
@@ -153,13 +144,10 @@
   :ensure
   :bind
   ([f8] . neotree-toggle))
-
-(use-package nord-theme
-  :ensure)
-
 (use-package powerline
   :ensure)
 (use-package pdf-tools
+  :hook pdf-mode
   :ensure)
 (use-package projectile
   :ensure
@@ -168,35 +156,36 @@
   :config
   (projectile-global-mode))
 (use-package rainbow-delimiters
-  :ensure)
+  :ensure t)
 (use-package restart-emacs
-  :ensure
+  :ensure t
   :bind
   ("C-c C-r" . restart-emacs))
 (use-package sublimity
-  :ensure
+  :ensure t
   :bind
   ([f9] . sublimity-mode))
 (use-package smartparens
   :ensure)
 (use-package smart-mode-line
-  :ensure
+  :ensure t
   :config  
   (setq sml/theme 'dark))
 (use-package swiper
-  :ensure
+  :ensure t
   :bind
   ("C-c s" . swiper))
 (use-package vimish-fold
   :ensure)
 (use-package which-key
-  :ensure
+  :ensure t
   :commands
   (which-key-mode)
   :config
   (setq which-key-idle-delay 2.0))
 (use-package yasnippet
-  :ensure
+  :ensure t
+  :defer t
   :diminish yas
   :bind ("C-c /" . yas-expand)
   :config
@@ -218,7 +207,6 @@
 (global-auto-revert-mode 1)
 (show-paren-mode 1)
 (winner-mode 1)
-
 
 ;; THINGS TURNED OFF
 (menu-bar-mode -1)

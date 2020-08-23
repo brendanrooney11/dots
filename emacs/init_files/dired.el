@@ -1,5 +1,7 @@
 (use-package dired
-  :config
+  :bind
+  (("C-x C-j" . dired-jump))
+  :config  
   (setq dired-recursive-copies 'always)
   (setq dired-recursive-deletes 'always)
   (setq dired-listing-switches

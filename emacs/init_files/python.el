@@ -1,5 +1,6 @@
 (use-package elpy
-  :ensure  
+  :ensure
+  :hook python-mode
   :init
   (elpy-enable))
 

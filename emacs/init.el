@@ -12,10 +12,11 @@
 
 ;; FILES ARE ALL LOCATED IN ~/.emacs.d/init_files/
 (load "~/.emacs.d/init_files/global.el")
-(load "~/.emacs.d/init_files/company.el")
+(load "~/.emacs.d/init_files/completion.el")
 (load "~/.emacs.d/init_files/elfeed.el")
 (load "~/.emacs.d/init_files/notes.el")
 (load "~/.emacs.d/init_files/org.el")
+(load "~/.emacs.d/init_files/themes.el")
 (load "~/.emacs.d/init_files/whitespace.el")
 
 ;; Langs
@@ -27,18 +28,11 @@
 (load "~/.emacs.d/init_files/js.el")
 (load "~/.emacs.d/init_files/java.el")
 (load "~/.emacs.d/init_files/lisp.el")
-(load "~/.emacs.d/init_files/lsp.el")
-
+(load "~/.emacs.d/init_files/lua.el")
 (load "~/.emacs.d/init_files/python.el")
-
-(load-theme 'gruvbox-dark-hard t)
-
-
 ;;(load "~/.emacs.d/init_files/rust_devlopment.el")
 
-;; hindent
-;; irony
-;; minimap
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -52,7 +46,7 @@
  '(haskell-process-suggest-remove-import-lines t)
  '(package-selected-packages
    (quote
-    (slime-company nord-theme ibuffer-vc elfeed-org elpy company-lsp lsp-java rjsx-mode json-mode js2-refactor js2-mode tidal ghc go-stacktracer go-gopath go-eldoc go-add-tags company-go go-mode cider company-quickhelp company keyfreq yasnippet which-key vimish-fold smart-mode-line smartparens sublimity restart-emacs rainbow-delimiters projectile pdf-tools powerline neotree multiple-cursors monokai-theme moe-theme magit lsp-ui lsp-mode idle-highlight-mode iedit hydra helm-swoop helm-ag helm gruvbox-theme flycheck fill-column-indicator exec-path-from-shell expand-region dumb-jump darkokai-theme crux counsel command-log-mode beacon ag ace-window use-package)))
+    (org-roam all-the-icons kaolin-themes tuareg lua-mode slime-company nord-theme ibuffer-vc elfeed-org elpy company-lsp lsp-java rjsx-mode json-mode js2-refactor js2-mode tidal ghc go-stacktracer go-gopath go-eldoc go-add-tags company-go go-mode cider company-quickhelp company keyfreq yasnippet which-key vimish-fold smart-mode-line smartparens sublimity restart-emacs rainbow-delimiters projectile pdf-tools powerline neotree multiple-cursors monokai-theme moe-theme magit lsp-ui lsp-mode idle-highlight-mode iedit hydra helm-swoop helm-ag helm gruvbox-theme flycheck fill-column-indicator exec-path-from-shell expand-region dumb-jump darkokai-theme crux counsel command-log-mode beacon ag ace-window use-package)))
  '(whitespace-style
    (quote
     (face tabs spaces trailing space-before-tab newline indentation space-after-tab space-mark tab-mark))))
