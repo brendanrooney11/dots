@@ -1,5 +1,4 @@
 #+TITLE:Dot Files
 
-* Emacs
-* I3
-* Zsh
+.emacs.d is out of date here see
+https://github.com/brendanrooney11/.emacs.d
