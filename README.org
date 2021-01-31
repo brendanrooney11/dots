@@ -1,4 +1,2 @@
-#+TITLE:Dot Files
-
 .emacs.d is out of date here see
 https://github.com/brendanrooney11/.emacs.d
